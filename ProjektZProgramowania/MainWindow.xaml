@@ -40,6 +40,7 @@
             <TextBlock x:Name="Kat2" MouseLeftButtonUp="Kat2_MouseLeftButtonUp" TextWrapping="Wrap" Text="Jeże" FontSize="26" Margin="5"/>
             <TextBlock x:Name="Kat3" MouseLeftButtonUp="Kat3_MouseLeftButtonUp" TextWrapping="Wrap" Text="Artefakty" FontSize="26" Margin="5"/>
         </StackPanel>
-        
+        <StackPanel></StackPanel>
+
     </Grid>
 </Window>

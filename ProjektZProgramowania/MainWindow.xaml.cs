@@ -36,22 +36,22 @@ namespace ProjektZProgramowania
 
         private void Kat1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            ///tutaj dodać linq
         }
 
         private void cartButton_Click(object sender, RoutedEventArgs e)
         {
-
+            // tu wyswietlanie konkretnej kategori
         }
 
         private void Kat2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            // tu wyswietlanie konkretnej kategori
         }
 
         private void Kat3_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            // tu wyswietlanie konkretnej kategori
         }
     }
 
