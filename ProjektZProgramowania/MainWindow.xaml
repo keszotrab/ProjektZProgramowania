@@ -42,5 +42,11 @@
         </StackPanel>
         <StackPanel></StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock TextWrapping="Wrap" Text="Produkty:" FontSize="32" TextAlignment="Center" />
+
+        </StackPanel>
+
+
     </Grid>
 </Window>

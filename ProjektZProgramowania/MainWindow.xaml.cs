@@ -23,14 +23,7 @@ namespace ProjektZProgramowania
         public MainWindow()
         {
             InitializeComponent();
-            //cartButton.Content =
-            // Assign an image to the button.
-           // button1.Image = Image.FromFile("C:\\Graphics\\MyBitmap.bmp");
-            // Align the image and text on the button.
-          //  button1.ImageAlign = ContentAlignment.MiddleRight;
-           // button1.TextAlign = ContentAlignment.MiddleLeft;
-            // Give the button a flat appearance.
-          //  button1.FlatStyle = FlatStyle.Flat;
+           
 
         }
 
@@ -41,7 +34,9 @@ namespace ProjektZProgramowania
 
         private void cartButton_Click(object sender, RoutedEventArgs e)
         {
-            // tu wyswietlanie konkretnej kategori
+            CartWindow Cart = new CartWindow();
+            Cart.Show();
+
         }
 
         private void Kat2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
