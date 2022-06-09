@@ -19,14 +19,19 @@ namespace ProjektZProgramowania
     /// </summary>
     public partial class CartWindow : Window
     {
+
+
         public CartWindow()
+
         {
             InitializeComponent();
         }
 
         private void clearCartButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mw.buyList.Clear();
+            Close();
         }
 
         private void buyButton_Click(object sender, RoutedEventArgs e)

@@ -23,12 +23,22 @@ namespace ProjektZProgramowania
     //[Table(Name = "Users")]
     public class Produkt
     { 
-    
+        
     }
 
     public partial class MainWindow : Window
     {
-        public void CatList( int catID)
+        
+        List<Button> dynamicButtList = new List<Button>();
+        List<int> itemsInCategory = new List<int>();
+        public List<int> buyList = new List<int>();
+
+
+
+
+
+
+        public void CatList(int catID)
         {
             DataClasses1DataContext context = new DataClasses1DataContext();
             var productsTable = from Products in context.Products select Products;
@@ -37,52 +47,92 @@ namespace ProjektZProgramowania
             productPrice.Children.Clear();
             productDesc.Children.Clear();
             productAmount.Children.Clear();
+            productBuyButtons.Children.Clear();
+            itemsInCategory.Clear();
+            int listId = 0;
+            dynamicButtList.Clear();
+
+
             foreach (var item in productsTable)
             {
                 if (item.Categoria_Id == catID)
                 {
-                    
+
+                    itemsInCategory.Add(item.Id);
 
 
-                    TextBox tBoxProductName = new TextBox();
+
+
+                    TextBlock tBoxProductName = new TextBlock();
                     tBoxProductName.Text = item.Name;
+                    tBoxProductName.Height = 40;
+                    tBoxProductName.TextAlignment = TextAlignment.Center;
+                    tBoxProductName.VerticalAlignment = VerticalAlignment.Center;
                     productName.Children.Add(tBoxProductName);
 
-                    TextBox tBoxProductPrice = new TextBox();
+                    TextBlock tBoxProductPrice = new TextBlock();
                     tBoxProductPrice.Text = item.Price.ToString();
+                    tBoxProductPrice.Height = 40;
+                    tBoxProductPrice.TextAlignment = TextAlignment.Center;
                     productPrice.Children.Add(tBoxProductPrice);
 
-                    TextBox tBoxProductDesc = new TextBox();
+                    TextBlock tBoxProductDesc = new TextBlock();
                     tBoxProductDesc.Text = item.Desc;
+                    tBoxProductDesc.Height = 40;
+                    tBoxProductPrice.TextAlignment = TextAlignment.Center;
                     productDesc.Children.Add(tBoxProductDesc);
 
-                    TextBox tBoxProductAmmount = new TextBox();
+                    TextBlock tBoxProductAmmount = new TextBlock();
                     tBoxProductAmmount.Text = item.Amount;
+                    tBoxProductAmmount.Height = 40;
                     productAmount.Children.Add(tBoxProductAmmount);
 
-                    //Image imageProductImg = new Image();
+
+
+
+                    
+                    Button testBtn = new Button();
+                    testBtn.Content = "Dodaj do koszyka";
+                    testBtn.FontSize = 10;
+                    testBtn.Height = 40;
+                    testBtn.Click += buyButton_Click;
+                    productBuyButtons.Children.Add(testBtn);
+                    //testBtn.Foreground = new SolidColorBrush(Colors.White);
+                    //testBtn.FontWeight = FontWeights.Bold;
+                    //testBtn.Background = new SolidColorBrush(Colors.Transparent);
+                    dynamicButtList.Add(testBtn);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
-                
-
             }
-
-
         }
 
+        
 
-        //Button button = new Button();
-        //button.Click += (s,e) => { your code; };
-        //button.Click += new EventHandler(button_Click);   
-        //container.Controls.Add(button);
+        
+        
 
 
 
         public MainWindow()
         {
             InitializeComponent();
-            List<int> itemsInCat1 = new List<int>();
-            List<int> itemsInCat2 = new List<int>();
-            List<int> itemsInCat3 = new List<int>();
+           
             // int  jest placeholderem zmienic go na poprawny typ
 
 
@@ -98,6 +148,41 @@ namespace ProjektZProgramowania
         {
             CartWindow Cart = new CartWindow();
             Cart.Show();
+            decimal totalCostNumber = 0;
+
+            DataClasses1DataContext context = new DataClasses1DataContext();
+            var productsTable = from Products in context.Products select Products;
+
+            foreach (var item in buyList)
+            {
+                foreach (var item2 in productsTable)
+                {
+                    if (item == item2.Id)
+                    {
+
+
+                        TextBlock cartTBProductName = new TextBlock();
+                        cartTBProductName.Text = item2.Name;
+                        cartTBProductName.Height = 40;
+                        Cart.cartNameSP.Children.Add(cartTBProductName);
+
+
+                        TextBlock cartTBProductPrice = new TextBlock();
+                        cartTBProductPrice.Text = item2.Price.ToString();
+                        cartTBProductPrice.Height = 40;
+                        Cart.cartPriceSP.Children.Add(cartTBProductPrice);
+                        totalCostNumber += item2.Price;
+                        //totalCost
+
+                    }
+                }
+            }
+
+
+
+
+
+            Cart.totalCost.Text = totalCostNumber.ToString();
         }
 
         private void Kat2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -111,6 +196,26 @@ namespace ProjektZProgramowania
             CatList(3);
 
         }
+
+        private void buyButton_Click(object sender, RoutedEventArgs e)
+        {
+            int j = 0;
+            foreach (var item in dynamicButtList)
+            {
+                if (sender == dynamicButtList[j])
+                {
+                    buyList.Add(itemsInCategory[j]);
+                    break;
+                    
+                }
+                j++;
+            }
+
+
+        }
+
+
+
     }
 
 

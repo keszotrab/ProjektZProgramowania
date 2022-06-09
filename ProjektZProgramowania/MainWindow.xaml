@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjektZProgramowania"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="Beige">
         <Grid.RowDefinitions>
             <RowDefinition Height="110"></RowDefinition>
             <RowDefinition ></RowDefinition>
@@ -56,7 +56,7 @@
                     <ColumnDefinition>  </ColumnDefinition>
                     <ColumnDefinition>  </ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="productImg" Grid.Row="0" Grid.Column="0"></StackPanel>
+                <StackPanel x:Name="productImg" Grid.Row="0" Grid.Column="0" ></StackPanel>
                 <StackPanel x:Name="productName" Grid.Row="0" Grid.Column="1"></StackPanel>
                 <StackPanel x:Name="productDesc" Grid.Row="0" Grid.Column="2"></StackPanel>
                 <StackPanel x:Name="productPrice" Grid.Row="0" Grid.Column="3"></StackPanel>
