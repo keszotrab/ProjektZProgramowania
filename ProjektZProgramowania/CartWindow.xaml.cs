@@ -23,5 +23,15 @@ namespace ProjektZProgramowania
         {
             InitializeComponent();
         }
+
+        private void clearCartButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

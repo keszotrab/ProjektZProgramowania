@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Projekt_ProgOb" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=BARTEK-KOMPUTER\SQLEXPRESS;Initial Catalog=Projekt_ProgOb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="ProjektZProgramowania.Properties.Settings" SettingsPropertyName="Projekt_ProgObConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categorie" Member="Categories">
+    <Type Name="Categories">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nazwa" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Opis" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Association Name="Categorie_Produkty" Member="Products" ThisKey="Id" OtherKey="Categoria_Id" Type="Products" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produkty" Member="Products">
+    <Type Name="Products">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nazwa" Member="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Categoria_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Opis" Member="Desc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Cena" Member="Price" Type="System.Decimal" DbType="Decimal(7,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Stan" Member="Amount" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Categorie_Produkty" Member="Categories" ThisKey="Categoria_Id" OtherKey="Id" Type="Categories" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

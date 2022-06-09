@@ -19,6 +19,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+
+        <TextBlock TextWrapping="Wrap" Text="Zawartość koszyka" FontSize="20" TextAlignment="Center" VerticalAlignment="Center"/>
+
+
+
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
@@ -27,11 +32,10 @@
             </StackPanel.Resources>
 
 
-
             <Button x:Name="buyButton" Click="buyButton_Click" Height="90" Width="90" >
                 <TextBlock TextWrapping="Wrap" Text="Kup" FontSize="20"/>
             </Button>
-            <Button x:Name="clearCartButton" Click="cartButton_Click" Height="90" Width="90"  >
+            <Button x:Name="clearCartButton" Click="clearCartButton_Click" Height="90" Width="90"  >
                 <TextBlock TextWrapping="Wrap" Text="Wyczyść koszyk" FontSize="20"  />
             </Button>
         </StackPanel>
