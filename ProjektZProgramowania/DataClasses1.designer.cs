@@ -36,6 +36,12 @@ namespace ProjektZProgramowania
     partial void InsertProducts(Products instance);
     partial void UpdateProducts(Products instance);
     partial void DeleteProducts(Products instance);
+    partial void InsertDane_Osobowe(Dane_Osobowe instance);
+    partial void UpdateDane_Osobowe(Dane_Osobowe instance);
+    partial void DeleteDane_Osobowe(Dane_Osobowe instance);
+    partial void InsertTransakcje(Transakcje instance);
+    partial void UpdateTransakcje(Transakcje instance);
+    partial void DeleteTransakcje(Transakcje instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -81,6 +87,22 @@ namespace ProjektZProgramowania
 			get
 			{
 				return this.GetTable<Products>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Dane_Osobowe> Dane_Osobowe
+		{
+			get
+			{
+				return this.GetTable<Dane_Osobowe>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Transakcje> Transakcje
+		{
+			get
+			{
+				return this.GetTable<Transakcje>();
 			}
 		}
 	}
@@ -177,7 +199,7 @@ namespace ProjektZProgramowania
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Produkty", Storage="_Products", ThisKey="Id", OtherKey="Categoria_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categories_Products", Storage="_Products", ThisKey="Id", OtherKey="Categoria_Id")]
 		public EntitySet<Products> Products
 		{
 			get
@@ -415,7 +437,7 @@ namespace ProjektZProgramowania
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorie_Produkty", Storage="_Categories", ThisKey="Categoria_Id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categories_Products", Storage="_Categories", ThisKey="Categoria_Id", OtherKey="Id", IsForeignKey=true)]
 		public Categories Categories
 		{
 			get
@@ -445,6 +467,415 @@ namespace ProjektZProgramowania
 						this._Categoria_Id = default(int);
 					}
 					this.SendPropertyChanged("Categories");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Dane_Osobowe")]
+	public partial class Dane_Osobowe : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Imie;
+		
+		private string _Nazwisko;
+		
+		private string _Adres;
+		
+		private string _Adres_dost;
+		
+		private string _Email;
+		
+		private EntitySet<Transakcje> _Transakcje;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnImieChanging(string value);
+    partial void OnImieChanged();
+    partial void OnNazwiskoChanging(string value);
+    partial void OnNazwiskoChanged();
+    partial void OnAdresChanging(string value);
+    partial void OnAdresChanged();
+    partial void OnAdres_dostChanging(string value);
+    partial void OnAdres_dostChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    #endregion
+		
+		public Dane_Osobowe()
+		{
+			this._Transakcje = new EntitySet<Transakcje>(new Action<Transakcje>(this.attach_Transakcje), new Action<Transakcje>(this.detach_Transakcje));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imie", DbType="NChar(20) NOT NULL", CanBeNull=false)]
+		public string Imie
+		{
+			get
+			{
+				return this._Imie;
+			}
+			set
+			{
+				if ((this._Imie != value))
+				{
+					this.OnImieChanging(value);
+					this.SendPropertyChanging();
+					this._Imie = value;
+					this.SendPropertyChanged("Imie");
+					this.OnImieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nazwisko", DbType="NChar(20) NOT NULL", CanBeNull=false)]
+		public string Nazwisko
+		{
+			get
+			{
+				return this._Nazwisko;
+			}
+			set
+			{
+				if ((this._Nazwisko != value))
+				{
+					this.OnNazwiskoChanging(value);
+					this.SendPropertyChanging();
+					this._Nazwisko = value;
+					this.SendPropertyChanged("Nazwisko");
+					this.OnNazwiskoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adres", DbType="NChar(20) NOT NULL", CanBeNull=false)]
+		public string Adres
+		{
+			get
+			{
+				return this._Adres;
+			}
+			set
+			{
+				if ((this._Adres != value))
+				{
+					this.OnAdresChanging(value);
+					this.SendPropertyChanging();
+					this._Adres = value;
+					this.SendPropertyChanged("Adres");
+					this.OnAdresChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adres_dost", DbType="NChar(20)")]
+		public string Adres_dost
+		{
+			get
+			{
+				return this._Adres_dost;
+			}
+			set
+			{
+				if ((this._Adres_dost != value))
+				{
+					this.OnAdres_dostChanging(value);
+					this.SendPropertyChanging();
+					this._Adres_dost = value;
+					this.SendPropertyChanged("Adres_dost");
+					this.OnAdres_dostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NChar(30) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dane_Osobowe_Transakcje", Storage="_Transakcje", ThisKey="Id", OtherKey="Id_dane")]
+		public EntitySet<Transakcje> Transakcje
+		{
+			get
+			{
+				return this._Transakcje;
+			}
+			set
+			{
+				this._Transakcje.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Transakcje(Transakcje entity)
+		{
+			this.SendPropertyChanging();
+			entity.Dane_Osobowe = this;
+		}
+		
+		private void detach_Transakcje(Transakcje entity)
+		{
+			this.SendPropertyChanging();
+			entity.Dane_Osobowe = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Transakcje")]
+	public partial class Transakcje : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Id_dane;
+		
+		private string _Status;
+		
+		private decimal _Kwota;
+		
+		private string _Produkty;
+		
+		private EntityRef<Dane_Osobowe> _Dane_Osobowe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnId_daneChanging(int value);
+    partial void OnId_daneChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnKwotaChanging(decimal value);
+    partial void OnKwotaChanged();
+    partial void OnProduktyChanging(string value);
+    partial void OnProduktyChanged();
+    #endregion
+		
+		public Transakcje()
+		{
+			this._Dane_Osobowe = default(EntityRef<Dane_Osobowe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_dane", DbType="Int NOT NULL")]
+		public int Id_dane
+		{
+			get
+			{
+				return this._Id_dane;
+			}
+			set
+			{
+				if ((this._Id_dane != value))
+				{
+					if (this._Dane_Osobowe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_daneChanging(value);
+					this.SendPropertyChanging();
+					this._Id_dane = value;
+					this.SendPropertyChanged("Id_dane");
+					this.OnId_daneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(20)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kwota", DbType="Decimal(7,2) NOT NULL")]
+		public decimal Kwota
+		{
+			get
+			{
+				return this._Kwota;
+			}
+			set
+			{
+				if ((this._Kwota != value))
+				{
+					this.OnKwotaChanging(value);
+					this.SendPropertyChanging();
+					this._Kwota = value;
+					this.SendPropertyChanged("Kwota");
+					this.OnKwotaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Produkty", DbType="NChar(50) NOT NULL", CanBeNull=false)]
+		public string Produkty
+		{
+			get
+			{
+				return this._Produkty;
+			}
+			set
+			{
+				if ((this._Produkty != value))
+				{
+					this.OnProduktyChanging(value);
+					this.SendPropertyChanging();
+					this._Produkty = value;
+					this.SendPropertyChanged("Produkty");
+					this.OnProduktyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Dane_Osobowe_Transakcje", Storage="_Dane_Osobowe", ThisKey="Id_dane", OtherKey="Id", IsForeignKey=true)]
+		public Dane_Osobowe Dane_Osobowe
+		{
+			get
+			{
+				return this._Dane_Osobowe.Entity;
+			}
+			set
+			{
+				Dane_Osobowe previousValue = this._Dane_Osobowe.Entity;
+				if (((previousValue != value) 
+							|| (this._Dane_Osobowe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Dane_Osobowe.Entity = null;
+						previousValue.Transakcje.Remove(this);
+					}
+					this._Dane_Osobowe.Entity = value;
+					if ((value != null))
+					{
+						value.Transakcje.Add(this);
+						this._Id_dane = value.Id;
+					}
+					else
+					{
+						this._Id_dane = default(int);
+					}
+					this.SendPropertyChanged("Dane_Osobowe");
 				}
 			}
 		}

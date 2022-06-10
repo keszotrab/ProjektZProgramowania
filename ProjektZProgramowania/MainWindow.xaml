@@ -37,7 +37,7 @@
             <TextBlock TextWrapping="Wrap" Text="Kategorie:" FontSize="32"  />
 
             <TextBlock x:Name="Kat1" MouseLeftButtonUp="Kat1_MouseLeftButtonUp" TextWrapping="Wrap" Text="Zupy" FontSize="26" Margin="5" />
-            <TextBlock x:Name="Kat2" MouseLeftButtonUp="Kat2_MouseLeftButtonUp" TextWrapping="Wrap" Text="Jeże" FontSize="26" Margin="5"/>
+            <TextBlock x:Name="Kat2" MouseLeftButtonUp="Kat2_MouseLeftButtonUp" TextWrapping="Wrap" Text="Napoje" FontSize="26" Margin="5"/>
             <TextBlock x:Name="Kat3" MouseLeftButtonUp="Kat3_MouseLeftButtonUp" TextWrapping="Wrap" Text="Artefakty" FontSize="26" Margin="5"/>
         </StackPanel>
         <StackPanel></StackPanel>

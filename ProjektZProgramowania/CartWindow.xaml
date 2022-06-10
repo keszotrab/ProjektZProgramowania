@@ -56,7 +56,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock TextWrapping="Wrap" Text="Img" FontSize="20" Grid.Column="0" />
+            <TextBlock TextWrapping="Wrap" Text="" FontSize="20" Grid.Column="0" />
             <TextBlock TextWrapping="Wrap" Text="Nazwa" FontSize="20" Grid.Column="1" />
             <TextBlock TextWrapping="Wrap" Text="Cena" FontSize="20" Grid.Column="2" />
 
@@ -83,13 +83,15 @@
             <TextBlock TextWrapping="Wrap" Text="Łączny koszt" FontSize="20" TextAlignment="Center"/>
             <TextBlock x:Name="totalCost" TextWrapping="Wrap" Text="tutajcena" FontSize="20" TextAlignment="Center"/>
             <TextBlock TextWrapping="Wrap" Text="Imie" FontSize="20"/>
-            <TextBox x:Name="customerName" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="customerName" TextWrapping="Wrap" Text="" Width="120"/>
             <TextBlock TextWrapping="Wrap" Text="Nazwisko" FontSize="20"/>
-            <TextBox x:Name="Nazwisko" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="customerSurename" TextWrapping="Wrap" Text="" Width="120"/>
             <TextBlock TextWrapping="Wrap" Text="Adres zamieszkania" FontSize="20"/>
-            <TextBox x:Name="homeAddress" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="customerHomeAddress" TextWrapping="Wrap" Text="" Width="120"/>
             <TextBlock TextWrapping="Wrap" Text="Adres dostawy" FontSize="20"/>
-            <TextBox x:Name="deliveryAddress" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="customerDeliveryAddress" TextWrapping="Wrap" Text="" Width="120"/>
+            <TextBlock TextWrapping="Wrap" Text="Email" FontSize="20"/>
+            <TextBox x:Name="customerEmail" TextWrapping="Wrap" Text="" Width="120"/>
         </StackPanel>
 
 

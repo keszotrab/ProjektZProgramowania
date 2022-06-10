@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using System.Data.SqlClient;
+using System.Data;
+using System.Data.Linq.Mapping;
+using System.Data.Linq;
 
 namespace ProjektZProgramowania
 {
@@ -32,10 +36,10 @@ namespace ProjektZProgramowania
         List<Button> dynamicButtList = new List<Button>();
         List<int> itemsInCategory = new List<int>();
         public List<int> buyList = new List<int>();
+        public decimal totalCostNumber = 0;
 
 
-
-
+        
 
 
         public void CatList(int catID)
@@ -71,19 +75,23 @@ namespace ProjektZProgramowania
                     productName.Children.Add(tBoxProductName);
 
                     TextBlock tBoxProductPrice = new TextBlock();
-                    tBoxProductPrice.Text = item.Price.ToString();
+                    tBoxProductPrice.Text = item.Price.ToString() + " zł";
                     tBoxProductPrice.Height = 40;
                     tBoxProductPrice.TextAlignment = TextAlignment.Center;
+                    tBoxProductPrice.VerticalAlignment = VerticalAlignment.Center;
+
                     productPrice.Children.Add(tBoxProductPrice);
 
                     TextBlock tBoxProductDesc = new TextBlock();
                     tBoxProductDesc.Text = item.Desc;
                     tBoxProductDesc.Height = 40;
-                    tBoxProductPrice.TextAlignment = TextAlignment.Center;
+                    tBoxProductDesc.TextAlignment = TextAlignment.Center;
+                    tBoxProductDesc.VerticalAlignment = VerticalAlignment.Center;
+
                     productDesc.Children.Add(tBoxProductDesc);
 
                     TextBlock tBoxProductAmmount = new TextBlock();
-                    tBoxProductAmmount.Text = item.Amount;
+                    //tBoxProductAmmount.Text = item.Amount;
                     tBoxProductAmmount.Height = 40;
                     productAmount.Children.Add(tBoxProductAmmount);
 
@@ -148,11 +156,16 @@ namespace ProjektZProgramowania
         {
             CartWindow Cart = new CartWindow();
             Cart.Show();
-            decimal totalCostNumber = 0;
+            totalCostNumber = 0;
 
             DataClasses1DataContext context = new DataClasses1DataContext();
             var productsTable = from Products in context.Products select Products;
 
+
+
+
+
+            
             foreach (var item in buyList)
             {
                 foreach (var item2 in productsTable)
@@ -172,7 +185,6 @@ namespace ProjektZProgramowania
                         cartTBProductPrice.Height = 40;
                         Cart.cartPriceSP.Children.Add(cartTBProductPrice);
                         totalCostNumber += item2.Price;
-                        //totalCost
 
                     }
                 }

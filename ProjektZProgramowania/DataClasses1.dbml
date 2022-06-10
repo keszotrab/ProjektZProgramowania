@@ -5,7 +5,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nazwa" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Opis" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
-      <Association Name="Categorie_Produkty" Member="Products" ThisKey="Id" OtherKey="Categoria_Id" Type="Products" />
+      <Association Name="Categories_Products" Member="Products" ThisKey="Id" OtherKey="Categoria_Id" Type="Products" />
     </Type>
   </Table>
   <Table Name="dbo.Produkty" Member="Products">
@@ -17,7 +17,28 @@
       <Column Name="Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Cena" Member="Price" Type="System.Decimal" DbType="Decimal(7,2) NOT NULL" CanBeNull="false" />
       <Column Name="Stan" Member="Amount" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Categorie_Produkty" Member="Categories" ThisKey="Categoria_Id" OtherKey="Id" Type="Categories" IsForeignKey="true" />
+      <Association Name="Categories_Products" Member="Categories" ThisKey="Categoria_Id" OtherKey="Id" Type="Categories" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dane_Osobowe" Member="Dane_Osobowe">
+    <Type Name="Dane_Osobowe">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Imie" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Nazwisko" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Adres" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Adres_dost" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="Dane_Osobowe_Transakcje" Member="Transakcje" ThisKey="Id" OtherKey="Id_dane" Type="Transakcje" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Transakcje" Member="Transakcje">
+    <Type Name="Transakcje">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_dane" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Kwota" Type="System.Decimal" DbType="Decimal(7,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Produkty" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Dane_Osobowe_Transakcje" Member="Dane_Osobowe" ThisKey="Id_dane" OtherKey="Id" Type="Dane_Osobowe" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
