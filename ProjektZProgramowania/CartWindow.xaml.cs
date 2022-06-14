@@ -103,7 +103,7 @@ namespace ProjektZProgramowania
             da.Adres_dost = customerDeliveryAddress.Text;
 
 
-            var tableDO = from Dane_Osobowe in context.Dane_Osobowe select Dane_Osobowe;
+            //var tableDO = from Dane_Osobowe in context.Dane_Osobowe select Dane_Osobowe;
 
 
 
