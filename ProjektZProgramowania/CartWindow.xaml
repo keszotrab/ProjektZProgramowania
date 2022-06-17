@@ -24,8 +24,22 @@
 
         </Grid.ColumnDefinitions>
 
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FFE6DD7E" />
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFE6DD7E" />
+        <Rectangle Grid.Row="0" Grid.Column="2" Fill="#FFE6DD7E" />
+        
+        
+        
+        
 
-        <TextBlock TextWrapping="Wrap" Text="Zawartość koszyka" FontSize="20" TextAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock TextWrapping="Wrap" 
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="2" 
+                   Text="Zawartość koszyka" 
+                   FontSize="42" 
+                   TextAlignment="Center" 
+                   VerticalAlignment="Center"
+                   />
 
 
 

@@ -25,9 +25,13 @@ namespace ProjektZProgramowania
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
 
-    //[Table(Name = "Users")]
     public static class WhatIsThat
     {
+        /// 
+        /// Klasa statyczna przechowywująca metode konwertująca dane obrazka z bazy w postaci byte[] na image
+        /// Aktualnie nieużywana
+        /// 
+    
         public static BitmapImage LoadImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0) return null;
@@ -42,33 +46,22 @@ namespace ProjektZProgramowania
         }
     }
 
-
-
-
-
     public partial class MainWindow : Window
     {
 
-
-
-        
         List<Button> dynamicButtList = new List<Button>();
         List<int> itemsInCategory = new List<int>();
         public List<int> buyList = new List<int>();
         public decimal totalCostNumber = 0;
 
 
-        
 
+        //CatList to funkcja która wczytuje wszystkie produkty o id categori
+        //równym catID
 
         public void CatList(int catID)
         {
-            //DataClasses1DataContext context = new DataClasses1DataContext();
-            //var productsTable = from Products in context.Products select Products;
-
-            //Produkty context = new Produkty();
-            //string productsTable = context.ToString();
-            //ProjektZProgramowania.Produkty.ToList();
+            
             
             Projekt_ProgObEntities context = new Projekt_ProgObEntities();
             var productsTable = context.Produkty;
@@ -85,37 +78,42 @@ namespace ProjektZProgramowania
 
             Label columnTitleImg = new Label();
             columnTitleImg.Content = "Obrazek";
-            columnTitleImg.Height = 25;
+            columnTitleImg.Height = 32;
+            columnTitleImg.FontSize = 16;
             columnTitleImg.HorizontalAlignment = HorizontalAlignment.Center;
-            columnTitleImg.VerticalAlignment = VerticalAlignment.Center;
+            columnTitleImg.VerticalAlignment = VerticalAlignment.Top;
             productImg.Children.Add(columnTitleImg);
 
             Label columnTitleName = new Label();
             columnTitleName.Content = "Nazwa";
-            columnTitleName.Height = 25;
+            columnTitleName.Height = 32;
+            columnTitleName.FontSize = 16;
             columnTitleName.HorizontalAlignment = HorizontalAlignment.Center;
-            columnTitleName.VerticalAlignment = VerticalAlignment.Center;
+            columnTitleName.VerticalAlignment = VerticalAlignment.Top;
             productName.Children.Add(columnTitleName);
 
             Label columnTitleDesc = new Label();
             columnTitleDesc.Content = "Opis";
-            columnTitleDesc.Height = 25;
+            columnTitleDesc.Height = 32;
+            columnTitleDesc.FontSize = 16;
             columnTitleDesc.HorizontalAlignment = HorizontalAlignment.Center;
-            columnTitleDesc.VerticalAlignment = VerticalAlignment.Center;
+            columnTitleDesc.VerticalAlignment = VerticalAlignment.Top;
             productDesc.Children.Add(columnTitleDesc);
 
             Label columnTitleCost = new Label();
             columnTitleCost.Content = "Cena";
-            columnTitleCost.Height = 25;
+            columnTitleCost.Height = 32;
+            columnTitleCost.FontSize = 16;
             columnTitleCost.HorizontalAlignment = HorizontalAlignment.Center;
-            columnTitleCost.VerticalAlignment = VerticalAlignment.Center;
+            columnTitleCost.VerticalAlignment = VerticalAlignment.Top;
             productPrice.Children.Add(columnTitleCost);
 
             Label columnTitleButt = new Label();
             columnTitleButt.Content = "Przycisk";
-            columnTitleButt.Height = 25;
+            columnTitleButt.Height = 32;
+            columnTitleButt.FontSize = 16;
             columnTitleButt.HorizontalAlignment = HorizontalAlignment.Center;
-            columnTitleButt.VerticalAlignment = VerticalAlignment.Center;
+            columnTitleButt.VerticalAlignment = VerticalAlignment.Top;
             productBuyButtons.Children.Add(columnTitleButt);
 
 
@@ -126,9 +124,6 @@ namespace ProjektZProgramowania
                 {
 
                     itemsInCategory.Add(item.Id);
-
-
-
 
                     Label tBoxProductName = new Label();
                     tBoxProductName.Content = item.Nazwa;
@@ -155,12 +150,10 @@ namespace ProjektZProgramowania
                     productDesc.Children.Add(tBoxProductDesc);
 
                     Image asrd = new Image();
-                    //asrd.Source = item.Img.
 
 
                     byte[] byteimg = item.Img;
                     BitmapImage i = new BitmapImage();
-                    //i.BeginInit();
                     i = WhatIsThat.LoadImage(item.Img);
                     if (i != null)
                     {
@@ -178,8 +171,6 @@ namespace ProjektZProgramowania
 
                     productImg.Children.Add(asrd);
 
-                    //i.DecodePixelWidth = 90;
-                    //i.EndInit();
 
                     Button testBtn = new Button();
                     testBtn.Content = "Dodaj do koszyka";
@@ -187,25 +178,7 @@ namespace ProjektZProgramowania
                     testBtn.Height = 90;
                     testBtn.Click += buyButton_Click;
                     productBuyButtons.Children.Add(testBtn);
-                    //testBtn.Foreground = new SolidColorBrush(Colors.White);
-                    //testBtn.FontWeight = FontWeights.Bold;
-                    //testBtn.Background = new SolidColorBrush(Colors.Transparent);
                     dynamicButtList.Add(testBtn);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 }
@@ -224,9 +197,6 @@ namespace ProjektZProgramowania
         {
             InitializeComponent();
            
-            // int  jest placeholderem zmienic go na poprawny typ
-
-
         }
 
         private void Kat1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -241,8 +211,6 @@ namespace ProjektZProgramowania
             Cart.Show();
             totalCostNumber = 0;
 
-            //DataClasses1DataContext context = new DataClasses1DataContext();
-            //var productsTable = from Products in context.Products select Products;
 
             Projekt_ProgObEntities context = new Projekt_ProgObEntities();
             var productsTable = context.Produkty;
@@ -256,7 +224,6 @@ namespace ProjektZProgramowania
                 {
                     if (item == item2.Id)
                     {
-
 
                         Label cartTBProductName = new Label();
                         cartTBProductName.Content = item2.Nazwa;
@@ -273,10 +240,6 @@ namespace ProjektZProgramowania
                     }
                 }
             }
-            
-
-
-
 
             Cart.totalCost.Text = totalCostNumber.ToString();
         }
@@ -292,6 +255,11 @@ namespace ProjektZProgramowania
             CatList(3);
 
         }
+
+
+        
+        //Event przycisku kup generowanego dla każdego produktu
+        //dodaje do listy rzeczy w koszyku przedmiot któremu odpowiada
 
         private void buyButton_Click(object sender, RoutedEventArgs e)
         {

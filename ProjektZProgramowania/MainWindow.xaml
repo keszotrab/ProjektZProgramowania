@@ -12,17 +12,21 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" ></ColumnDefinition>
+            <ColumnDefinition Width="180" ></ColumnDefinition>
             <ColumnDefinition  ></ColumnDefinition>
             <ColumnDefinition Width="110"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FFE6DD7E" />
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFE6DD7E" />
+        <Rectangle Grid.Row="0" Grid.Column="2" Fill="#FFE6DD7E" />
+        
         <TextBlock Grid.Column="0" Grid.ColumnSpan="2" 
                    Grid.Row="0" 
-                   Height="90" 
+                   Height="110" 
                    TextWrapping="Wrap" 
-                   Text="Sklep Z Różnościami!" 
+                   Text="Sklep z Różnościami!" 
                    FontSize="42" 
+                   Padding="20"
                    HorizontalAlignment="Stretch" 
                    TextAlignment="Center"/>
         
