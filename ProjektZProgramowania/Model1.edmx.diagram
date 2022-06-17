@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f442bfd23ef46698f9fa178d27ddc50" Name="Diagram1">
+        <EntityTypeShape EntityType="Projekt_ProgObModel.Categorie" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projekt_ProgObModel.Dane_Osobowe" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projekt_ProgObModel.Produkty" Width="1.5" PointX="8.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Projekt_ProgObModel.sysdiagrams" Width="1.5" PointX="1.25" PointY="3.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="Projekt_ProgObModel.Transakcje" Width="1.5" PointX="8.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Projekt_ProgObModel.FK_Produkty_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="Projekt_ProgObModel.FK_Transakcje_Dane_Osobowe" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

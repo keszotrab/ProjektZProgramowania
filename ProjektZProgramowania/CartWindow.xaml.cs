@@ -18,7 +18,7 @@ using System.Data.Linq;
 
 namespace ProjektZProgramowania
 {
-
+    /**
     [Table(Name = "Transkacje")]
     public class UserEntity
     {
@@ -58,13 +58,12 @@ namespace ProjektZProgramowania
     }
 
 
-
+    */
     /// <summary>
     /// Logika interakcji dla klasy CartWindow.xaml
     /// </summary>
     public partial class CartWindow : Window
     {
-        string prod = "";
 
         public CartWindow()
 
@@ -81,10 +80,65 @@ namespace ProjektZProgramowania
 
         private void buyButton_Click(object sender, RoutedEventArgs e)
         {
-            var mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            DataClasses1DataContext context = new DataClasses1DataContext();
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            //var mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            //DataClasses1DataContext context = new DataClasses1DataContext();
             
 
+            /*
             Transakcje tr = new Transakcje();
             tr.Status = "asd";
             tr.Kwota = mw.totalCostNumber;
@@ -101,7 +155,7 @@ namespace ProjektZProgramowania
             da.Email = customerEmail.Text;
             da.Adres = customerHomeAddress.Text;
             da.Adres_dost = customerDeliveryAddress.Text;
-
+            */
 
             //var tableDO = from Dane_Osobowe in context.Dane_Osobowe select Dane_Osobowe;
 

@@ -17,7 +17,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Data.Linq.Mapping;
 using System.Data.Linq;
-
+using System.IO;
+using System.Drawing;
 namespace ProjektZProgramowania
 {
     /// <summary>
@@ -25,13 +26,31 @@ namespace ProjektZProgramowania
     /// </summary>
 
     //[Table(Name = "Users")]
-    public class Produkt
-    { 
-        
+    public static class WhatIsThat
+    {
+        public static BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(imageData))
+            {
+                mem.Position = 0;
+                image.BeginInit(); image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad; image.UriSource = null; image.StreamSource = mem; image.EndInit();
+            }
+            image.Freeze(); return image;
+        }
     }
+
+
+
+
 
     public partial class MainWindow : Window
     {
+
+
+
         
         List<Button> dynamicButtList = new List<Button>();
         List<int> itemsInCategory = new List<int>();
@@ -44,18 +63,31 @@ namespace ProjektZProgramowania
 
         public void CatList(int catID)
         {
-            DataClasses1DataContext context = new DataClasses1DataContext();
-            var productsTable = from Products in context.Products select Products;
+            //DataClasses1DataContext context = new DataClasses1DataContext();
+            //var productsTable = from Products in context.Products select Products;
+
+            //Produkty context = new Produkty();
+            //string productsTable = context.ToString();
+            //ProjektZProgramowania.Produkty.ToList();
+            
+            Projekt_ProgObEntities context = new Projekt_ProgObEntities();
+            var productsTable = context.Produkty;
+           
+
             productImg.Children.Clear();
             productName.Children.Clear();
             productPrice.Children.Clear();
             productDesc.Children.Clear();
-            productAmount.Children.Clear();
             productBuyButtons.Children.Clear();
             itemsInCategory.Clear();
             int listId = 0;
             dynamicButtList.Clear();
 
+
+            productName.Children.Add(tBoxProductName);
+            productDesc.Children.Add(tBoxProductDesc);
+            productPrice.Children.Add(tBoxProductPrice);
+            productImg.Children.Add(asrd);
 
             foreach (var item in productsTable)
             {
@@ -68,37 +100,56 @@ namespace ProjektZProgramowania
 
 
                     TextBlock tBoxProductName = new TextBlock();
-                    tBoxProductName.Text = item.Name;
-                    tBoxProductName.Height = 40;
+                    tBoxProductName.Text = item.Nazwa;
+                    tBoxProductName.Height = 90;
                     tBoxProductName.TextAlignment = TextAlignment.Center;
                     tBoxProductName.VerticalAlignment = VerticalAlignment.Center;
                     productName.Children.Add(tBoxProductName);
 
                     TextBlock tBoxProductPrice = new TextBlock();
-                    tBoxProductPrice.Text = item.Price.ToString() + " zł";
-                    tBoxProductPrice.Height = 40;
+                    tBoxProductPrice.Text = item.Cena.ToString() + " zł";
+                    tBoxProductPrice.Height = 90;
                     tBoxProductPrice.TextAlignment = TextAlignment.Center;
                     tBoxProductPrice.VerticalAlignment = VerticalAlignment.Center;
 
                     productPrice.Children.Add(tBoxProductPrice);
 
                     TextBlock tBoxProductDesc = new TextBlock();
-                    tBoxProductDesc.Text = item.Desc;
-                    tBoxProductDesc.Height = 40;
+                    tBoxProductDesc.Text = item.Opis;
+                    tBoxProductDesc.Height = 90;
+                    tBoxProductDesc.TextWrapping = TextWrapping.WrapWithOverflow;
                     tBoxProductDesc.TextAlignment = TextAlignment.Center;
                     tBoxProductDesc.VerticalAlignment = VerticalAlignment.Center;
 
                     productDesc.Children.Add(tBoxProductDesc);
 
-                    TextBlock tBoxProductAmmount = new TextBlock();
-                    //tBoxProductAmmount.Text = item.Amount;
-                    tBoxProductAmmount.Height = 40;
-                    productAmount.Children.Add(tBoxProductAmmount);
+                    Image asrd = new Image();
+                    //asrd.Source = item.Img.
+
+
+                    byte[] byteimg = item.Img;
+                    BitmapImage i = new BitmapImage();
+                    //i.BeginInit();
+                    i = WhatIsThat.LoadImage(item.Img);
+                    if (i != null)
+                    {
+                        asrd.Source = i;
+                    }
+                    else
+                    {
+                        var uriSource = new Uri("NoImage.jpg", UriKind.Relative);
+
+                        asrd.Source = new BitmapImage(uriSource);
+                    } 
 
 
 
 
-                    
+                    productImg.Children.Add(asrd);
+
+                    //i.DecodePixelWidth = 90;
+                    //i.EndInit();
+
                     Button testBtn = new Button();
                     testBtn.Content = "Dodaj do koszyka";
                     testBtn.FontSize = 10;
@@ -128,6 +179,7 @@ namespace ProjektZProgramowania
 
                 }
             }
+            
         }
 
         
@@ -158,14 +210,15 @@ namespace ProjektZProgramowania
             Cart.Show();
             totalCostNumber = 0;
 
-            DataClasses1DataContext context = new DataClasses1DataContext();
-            var productsTable = from Products in context.Products select Products;
+            //DataClasses1DataContext context = new DataClasses1DataContext();
+            //var productsTable = from Products in context.Products select Products;
+
+            Projekt_ProgObEntities context = new Projekt_ProgObEntities();
+            var productsTable = context.Produkty;
 
 
 
 
-
-            
             foreach (var item in buyList)
             {
                 foreach (var item2 in productsTable)
@@ -175,21 +228,21 @@ namespace ProjektZProgramowania
 
 
                         TextBlock cartTBProductName = new TextBlock();
-                        cartTBProductName.Text = item2.Name;
+                        cartTBProductName.Text = item2.Nazwa;
                         cartTBProductName.Height = 40;
                         Cart.cartNameSP.Children.Add(cartTBProductName);
 
 
                         TextBlock cartTBProductPrice = new TextBlock();
-                        cartTBProductPrice.Text = item2.Price.ToString();
+                        cartTBProductPrice.Text = item2.Cena.ToString();
                         cartTBProductPrice.Height = 40;
                         Cart.cartPriceSP.Children.Add(cartTBProductPrice);
-                        totalCostNumber += item2.Price;
+                        totalCostNumber += item2.Cena;
 
                     }
                 }
             }
-
+            
 
 
 

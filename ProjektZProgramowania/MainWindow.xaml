@@ -12,7 +12,7 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="210" ></ColumnDefinition>
+            <ColumnDefinition Width="160" ></ColumnDefinition>
             <ColumnDefinition  ></ColumnDefinition>
             <ColumnDefinition Width="110"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -43,25 +43,23 @@
         <StackPanel></StackPanel>
 
         <StackPanel x:Name="productStack" Grid.Row="1" Grid.Column="1">
-            <TextBlock TextWrapping="Wrap" Text="Produkty:" FontSize="32" TextAlignment="Center" />
+            <TextBlock TextWrapping="Wrap" Text="Produkty" FontSize="32" TextAlignment="Center" />
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition>  </ColumnDefinition>
-                    <ColumnDefinition>  </ColumnDefinition>
-                    <ColumnDefinition>  </ColumnDefinition>
-                    <ColumnDefinition>  </ColumnDefinition>
-                    <ColumnDefinition>  </ColumnDefinition>
-                    <ColumnDefinition>  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="90" Width="*">  </ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel x:Name="productImg" Grid.Row="0" Grid.Column="0" ></StackPanel>
                 <StackPanel x:Name="productName" Grid.Row="0" Grid.Column="1"></StackPanel>
                 <StackPanel x:Name="productDesc" Grid.Row="0" Grid.Column="2"></StackPanel>
                 <StackPanel x:Name="productPrice" Grid.Row="0" Grid.Column="3"></StackPanel>
-                <StackPanel x:Name="productAmount" Grid.Row="0" Grid.Column="4"></StackPanel>
-                <StackPanel x:Name="productBuyButtons" Grid.Row="0" Grid.Column="5"></StackPanel>
+                <StackPanel x:Name="productBuyButtons" Grid.Row="0" Grid.Column="4"></StackPanel>
 
             </Grid>
         </StackPanel>
