@@ -21,7 +21,7 @@
                    Grid.Row="0" 
                    Height="90" 
                    TextWrapping="Wrap" 
-                   Text="KozakSklep.com" 
+                   Text="Sklep Z Różnościami!" 
                    FontSize="42" 
                    HorizontalAlignment="Stretch" 
                    TextAlignment="Center"/>
@@ -50,10 +50,10 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
-                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="120" Width="*">  </ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
-                    <ColumnDefinition MaxWidth="90" Width="*">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="100" Width="*">  </ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel x:Name="productImg" Grid.Row="0" Grid.Column="0" ></StackPanel>
                 <StackPanel x:Name="productName" Grid.Row="0" Grid.Column="1"></StackPanel>

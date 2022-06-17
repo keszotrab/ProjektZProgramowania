@@ -83,11 +83,42 @@ namespace ProjektZProgramowania
             int listId = 0;
             dynamicButtList.Clear();
 
+            Label columnTitleImg = new Label();
+            columnTitleImg.Content = "Obrazek";
+            columnTitleImg.Height = 25;
+            columnTitleImg.HorizontalAlignment = HorizontalAlignment.Center;
+            columnTitleImg.VerticalAlignment = VerticalAlignment.Center;
+            productImg.Children.Add(columnTitleImg);
 
-            productName.Children.Add(tBoxProductName);
-            productDesc.Children.Add(tBoxProductDesc);
-            productPrice.Children.Add(tBoxProductPrice);
-            productImg.Children.Add(asrd);
+            Label columnTitleName = new Label();
+            columnTitleName.Content = "Nazwa";
+            columnTitleName.Height = 25;
+            columnTitleName.HorizontalAlignment = HorizontalAlignment.Center;
+            columnTitleName.VerticalAlignment = VerticalAlignment.Center;
+            productName.Children.Add(columnTitleName);
+
+            Label columnTitleDesc = new Label();
+            columnTitleDesc.Content = "Opis";
+            columnTitleDesc.Height = 25;
+            columnTitleDesc.HorizontalAlignment = HorizontalAlignment.Center;
+            columnTitleDesc.VerticalAlignment = VerticalAlignment.Center;
+            productDesc.Children.Add(columnTitleDesc);
+
+            Label columnTitleCost = new Label();
+            columnTitleCost.Content = "Cena";
+            columnTitleCost.Height = 25;
+            columnTitleCost.HorizontalAlignment = HorizontalAlignment.Center;
+            columnTitleCost.VerticalAlignment = VerticalAlignment.Center;
+            productPrice.Children.Add(columnTitleCost);
+
+            Label columnTitleButt = new Label();
+            columnTitleButt.Content = "Przycisk";
+            columnTitleButt.Height = 25;
+            columnTitleButt.HorizontalAlignment = HorizontalAlignment.Center;
+            columnTitleButt.VerticalAlignment = VerticalAlignment.Center;
+            productBuyButtons.Children.Add(columnTitleButt);
+
+
 
             foreach (var item in productsTable)
             {
@@ -99,28 +130,28 @@ namespace ProjektZProgramowania
 
 
 
-                    TextBlock tBoxProductName = new TextBlock();
-                    tBoxProductName.Text = item.Nazwa;
+                    Label tBoxProductName = new Label();
+                    tBoxProductName.Content = item.Nazwa;
                     tBoxProductName.Height = 90;
-                    tBoxProductName.TextAlignment = TextAlignment.Center;
+                    tBoxProductName.HorizontalAlignment = HorizontalAlignment.Center;
                     tBoxProductName.VerticalAlignment = VerticalAlignment.Center;
+                    tBoxProductName.VerticalContentAlignment = VerticalAlignment.Center;
                     productName.Children.Add(tBoxProductName);
 
-                    TextBlock tBoxProductPrice = new TextBlock();
-                    tBoxProductPrice.Text = item.Cena.ToString() + " zł";
+                    Label tBoxProductPrice = new Label();
+                    tBoxProductPrice.Content = item.Cena.ToString() + " zł";
                     tBoxProductPrice.Height = 90;
-                    tBoxProductPrice.TextAlignment = TextAlignment.Center;
+                    tBoxProductPrice.HorizontalAlignment = HorizontalAlignment.Center;
                     tBoxProductPrice.VerticalAlignment = VerticalAlignment.Center;
-
+                    tBoxProductPrice.VerticalContentAlignment = VerticalAlignment.Center;
                     productPrice.Children.Add(tBoxProductPrice);
 
-                    TextBlock tBoxProductDesc = new TextBlock();
-                    tBoxProductDesc.Text = item.Opis;
+                    Label tBoxProductDesc = new Label();
+                    tBoxProductDesc.Content = item.Opis;
                     tBoxProductDesc.Height = 90;
-                    tBoxProductDesc.TextWrapping = TextWrapping.WrapWithOverflow;
-                    tBoxProductDesc.TextAlignment = TextAlignment.Center;
+                    tBoxProductDesc.HorizontalAlignment = HorizontalAlignment.Center;
                     tBoxProductDesc.VerticalAlignment = VerticalAlignment.Center;
-
+                    tBoxProductDesc.VerticalContentAlignment = VerticalAlignment.Center;
                     productDesc.Children.Add(tBoxProductDesc);
 
                     Image asrd = new Image();
@@ -152,8 +183,8 @@ namespace ProjektZProgramowania
 
                     Button testBtn = new Button();
                     testBtn.Content = "Dodaj do koszyka";
-                    testBtn.FontSize = 10;
-                    testBtn.Height = 40;
+                    testBtn.FontSize = 12;
+                    testBtn.Height = 90;
                     testBtn.Click += buyButton_Click;
                     productBuyButtons.Children.Add(testBtn);
                     //testBtn.Foreground = new SolidColorBrush(Colors.White);
@@ -227,14 +258,14 @@ namespace ProjektZProgramowania
                     {
 
 
-                        TextBlock cartTBProductName = new TextBlock();
-                        cartTBProductName.Text = item2.Nazwa;
+                        Label cartTBProductName = new Label();
+                        cartTBProductName.Content = item2.Nazwa;
                         cartTBProductName.Height = 40;
                         Cart.cartNameSP.Children.Add(cartTBProductName);
 
 
-                        TextBlock cartTBProductPrice = new TextBlock();
-                        cartTBProductPrice.Text = item2.Cena.ToString();
+                        Label cartTBProductPrice = new Label();
+                        cartTBProductPrice.Content = item2.Cena.ToString();
                         cartTBProductPrice.Height = 40;
                         Cart.cartPriceSP.Children.Add(cartTBProductPrice);
                         totalCostNumber += item2.Cena;
