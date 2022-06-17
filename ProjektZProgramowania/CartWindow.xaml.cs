@@ -71,17 +71,6 @@ namespace ProjektZProgramowania
                 context.SaveChanges();
 
             }
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 }
