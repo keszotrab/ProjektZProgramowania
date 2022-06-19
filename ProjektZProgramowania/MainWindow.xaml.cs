@@ -19,6 +19,7 @@ using System.Data.Linq.Mapping;
 using System.Data.Linq;
 using System.IO;
 using System.Drawing;
+
 namespace ProjektZProgramowania
 {
     /// <summary>
@@ -48,12 +49,13 @@ namespace ProjektZProgramowania
 
     public partial class MainWindow : Window
     {
-
+         List<Categorie> catList = new List<Categorie>();
+         List<TextBlock> catTBList = new List<TextBlock>();
         List<Button> dynamicButtList = new List<Button>();
         List<int> itemsInCategory = new List<int>();
         public List<int> buyList = new List<int>();
         public decimal totalCostNumber = 0;
-
+        
 
 
         //CatList to funkcja która wczytuje wszystkie produkty o id categori
@@ -73,7 +75,6 @@ namespace ProjektZProgramowania
             productDesc.Children.Clear();
             productBuyButtons.Children.Clear();
             itemsInCategory.Clear();
-            int listId = 0;
             dynamicButtList.Clear();
 
             Label columnTitleImg = new Label();
@@ -167,7 +168,7 @@ namespace ProjektZProgramowania
                     } 
 
 
-
+                    /////////////////////////////////////////////////////
 
                     productImg.Children.Add(asrd);
 
@@ -186,24 +187,31 @@ namespace ProjektZProgramowania
             
         }
 
-        
-
-        
-        
-
-
 
         public MainWindow()
         {
             InitializeComponent();
-           
+            Projekt_ProgObEntities context = new Projekt_ProgObEntities();
+            var tabCat = context.Categorie;
+
+            foreach (var item in tabCat)
+            {
+                catList.Add(item);
+                TextBlock nazwaKategorii = new TextBlock();
+                nazwaKategorii.MouseLeftButtonUp += nazwaKategorii_MouseLeftButtonUp;
+                nazwaKategorii.TextWrapping = System.Windows.TextWrapping.Wrap;
+                nazwaKategorii.Text = item.Nazwa;
+                nazwaKategorii.FontSize = 26;
+                catTBList.Add(nazwaKategorii);
+
+                Console.WriteLine(item.Nazwa);
+                Kategorie.Children.Add(nazwaKategorii);
+            }
+
+
+
         }
 
-        private void Kat1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            CatList(1);
-
-        }
 
         private void cartButton_Click(object sender, RoutedEventArgs e)
         {
@@ -244,20 +252,34 @@ namespace ProjektZProgramowania
             Cart.totalCost.Text = totalCostNumber.ToString();
         }
 
-        private void Kat2_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+
+
+        private void nazwaKategorii_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CatList(2);
+            Projekt_ProgObEntities context = new Projekt_ProgObEntities();
+            var tabCat = context.Categorie;
+
+            int j = 0;
+            foreach (var item in catTBList)
+            {
+                if (item == sender)
+                {
+                    break;
+                }
+                j++;
+            }
+
+            int d = catList[j].Id;
+
+            CatList(d);
+
 
         }
 
-        private void Kat3_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            CatList(3);
-
-        }
 
 
-        
+
+
         //Event przycisku kup generowanego dla każdego produktu
         //dodaje do listy rzeczy w koszyku przedmiot któremu odpowiada
 
