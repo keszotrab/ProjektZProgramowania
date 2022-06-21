@@ -46,29 +46,76 @@ namespace ProjektZProgramowania
             }
 
 
-
-            using (Projekt_ProgObEntities context = new Projekt_ProgObEntities())
+            if (customerName.Text != "" && customerSurename.Text != "" && customerHomeAddress.Text != "" && customerEmail.Text != "" && prod !="")
             {
-                Dane_Osobowe daneOs = new Dane_Osobowe()
-                {
-                    Imie = customerName.Text,
-                    Nazwisko = customerSurename.Text,
-                    Adres = customerHomeAddress.Text,
-                    Adres_dost= customerDeliveryAddress.Text,
-                    Email = customerEmail.Text
 
-                };
-                context.Dane_Osobowe.Add(daneOs);
 
-                Transakcje transakcje = new Transakcje()
+                using (Projekt_ProgObEntities context = new Projekt_ProgObEntities())
                 {
-                    Id_dane = daneOs.Id,
-                    Status = "w trakcie",
-                    Kwota = mw.totalCostNumber,
-                    Produkty = prod
-                };
-                context.Transakcje.Add(transakcje);
-                context.SaveChanges();
+                    Dane_Osobowe daneOs = new Dane_Osobowe()
+                    {
+                        Imie = customerName.Text,
+                        Nazwisko = customerSurename.Text,
+                        Adres = customerHomeAddress.Text,
+                        Adres_dost = customerDeliveryAddress.Text,
+                        Email = customerEmail.Text
+
+                    };
+                    context.Dane_Osobowe.Add(daneOs);
+                    
+                    if (daneOs.Adres_dost == null)
+                    {
+                        daneOs.Adres_dost =daneOs.Adres;
+                    }
+
+                    Transakcje transakcje = new Transakcje()
+                    {
+                        Id_dane = daneOs.Id,
+                        Status = "w trakcie",
+                        Kwota = mw.totalCostNumber,
+                        Produkty = prod
+                    };
+                    context.Transakcje.Add(transakcje);
+                    context.SaveChanges();
+
+                }
+
+                //czyszczenie listy i zamkniecie okna w celu unikniecia kupienia produktow wielekrotnie
+                mw.buyList.Clear();
+                Close();
+                string messageBoxText = "Przedmioty zostały zakupione";
+                string caption = "Friendly reminder";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            else
+            {
+                if (prod == "")
+                {
+                    string messageBoxText = "Nie wybrano żadnych produktów";
+                    string caption = "Friendly reminder";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+
+                }
+
+                if (customerName.Text == "" || customerSurename.Text == "" || customerHomeAddress.Text == "" || customerEmail.Text == "")
+                {
+                    string messageBoxText = "Uzupełniej dane osobowe! (Jeślli adres dostawy jest taki sam jak zamieszkania możesz zostawić pole puste)";
+                    string caption = "Friendly reminder";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                }
+
 
             }
         }

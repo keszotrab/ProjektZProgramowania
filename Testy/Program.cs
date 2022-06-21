@@ -32,26 +32,38 @@ namespace Testy
 
             Console.WriteLine("Test 2");
 
+            //Test ma za zadanie dodac rekord do bazy danych
 
+            var showPiece = context.Dane_Osobowe
+                   .OrderByDescending(p => p.Id)
+                   .FirstOrDefault();
 
-            var tabCat = context.Categorie;
-
-            int j = 0;
-            foreach (var item in catTBList)
-            {
-                if (item == sender)
+            Console.WriteLine("Najnowsze ID przed dodaniem");
+            Console.WriteLine(showPiece.Id);
+            Dane_Osobowe daneOs = new Dane_Osobowe()
                 {
-                    break;
-                }
-                j++;
-            }
+                    Imie = "test",
+                    Nazwisko = "test",
+                    Adres = "test",
+                    Adres_dost = "test",
+                    Email = "test"
 
-            int d = catList[j].Id;
+                };
+                context.Dane_Osobowe.Add(daneOs);
+                context.SaveChanges();
 
-            CatList(d);
+
+            showPiece = context.Dane_Osobowe
+                   .OrderByDescending(p => p.Id)
+                   .FirstOrDefault();
+
+            Console.WriteLine("Najnowsze ID po dodaniu");
+            Console.WriteLine(showPiece.Id);
 
 
+            //wypisuje ostatnie ID w bazie danych i ostatnie ID po dodaniu rekordu, jesli sa rózne oznacza to sukces
 
+            Console.WriteLine("");
 
 
 

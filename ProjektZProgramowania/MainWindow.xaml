@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektZProgramowania"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        MinHeight="500" 
+        MinWidth="800"
+        SizeChanged="Window_SizeChanged"
+        
+        >
     <Grid Background="Beige">
         <Grid.RowDefinitions>
             <RowDefinition Height="110"></RowDefinition>
@@ -43,19 +48,21 @@
         
         <StackPanel></StackPanel>
 
-        <StackPanel x:Name="productStack" Grid.Row="1" Grid.Column="1">
+        
+        <StackPanel x:Name="productStack" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBlock TextWrapping="Wrap" Text="Produkty" FontSize="32" TextAlignment="Center" />
+            <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Auto" Grid.Column="5" Grid.ColumnSpan="1" MinHeight="300" Height="auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
-                    <ColumnDefinition MaxWidth="120" Width="*">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="90" MinWidth="90">  </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="120" MinWidth="120" Width="*">  </ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition MaxWidth="90">  </ColumnDefinition>
-                    <ColumnDefinition MaxWidth="100" Width="*">  </ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="90" MinWidth="90" Width="*"></ColumnDefinition>
+                    <ColumnDefinition MaxWidth="100" MinWidth="100" Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                 <StackPanel x:Name="productImg" Grid.Row="0" Grid.Column="0" ></StackPanel>
                 <StackPanel x:Name="productName" Grid.Row="0" Grid.Column="1"></StackPanel>
                 <StackPanel x:Name="productDesc" Grid.Row="0" Grid.Column="2"></StackPanel>
@@ -63,6 +70,7 @@
                 <StackPanel x:Name="productBuyButtons" Grid.Row="0" Grid.Column="4"></StackPanel>
 
             </Grid>
+            </ScrollViewer>
         </StackPanel>
 
 

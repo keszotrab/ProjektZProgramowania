@@ -55,7 +55,6 @@ namespace ProjektZProgramowania
         List<int> itemsInCategory = new List<int>();
         public List<int> buyList = new List<int>();
         public decimal totalCostNumber = 0;
-        
 
 
         //CatList to funkcja która wczytuje wszystkie produkty o id categori
@@ -165,11 +164,11 @@ namespace ProjektZProgramowania
                         var uriSource = new Uri("NoImage.jpg", UriKind.Relative);
 
                         asrd.Source = new BitmapImage(uriSource);
-                    } 
+                    }
 
 
                     /////////////////////////////////////////////////////
-
+                    productImg.Width = 90;
                     productImg.Children.Add(asrd);
 
 
@@ -215,41 +214,47 @@ namespace ProjektZProgramowania
 
         private void cartButton_Click(object sender, RoutedEventArgs e)
         {
-            CartWindow Cart = new CartWindow();
-            Cart.Show();
-            totalCostNumber = 0;
-
-
-            Projekt_ProgObEntities context = new Projekt_ProgObEntities();
-            var productsTable = context.Produkty;
-
-
-
-
-            foreach (var item in buyList)
+            CartWindow instance = Application.Current.Windows.OfType<CartWindow>().SingleOrDefault();
+            if (instance == null)
             {
-                foreach (var item2 in productsTable)
+
+
+                CartWindow Cart = new CartWindow();
+                Cart.Show();
+                totalCostNumber = 0;
+
+
+                Projekt_ProgObEntities context = new Projekt_ProgObEntities();
+                var productsTable = context.Produkty;
+
+
+
+
+                foreach (var item in buyList)
                 {
-                    if (item == item2.Id)
+                    foreach (var item2 in productsTable)
                     {
+                        if (item == item2.Id)
+                        {
 
-                        Label cartTBProductName = new Label();
-                        cartTBProductName.Content = item2.Nazwa;
-                        cartTBProductName.Height = 40;
-                        Cart.cartNameSP.Children.Add(cartTBProductName);
+                            Label cartTBProductName = new Label();
+                            cartTBProductName.Content = item2.Nazwa;
+                            cartTBProductName.Height = 40;
+                            Cart.cartNameSP.Children.Add(cartTBProductName);
 
 
-                        Label cartTBProductPrice = new Label();
-                        cartTBProductPrice.Content = item2.Cena.ToString();
-                        cartTBProductPrice.Height = 40;
-                        Cart.cartPriceSP.Children.Add(cartTBProductPrice);
-                        totalCostNumber += item2.Cena;
+                            Label cartTBProductPrice = new Label();
+                            cartTBProductPrice.Content = item2.Cena.ToString();
+                            cartTBProductPrice.Height = 40;
+                            Cart.cartPriceSP.Children.Add(cartTBProductPrice);
+                            totalCostNumber += item2.Cena;
 
+                        }
                     }
                 }
-            }
 
-            Cart.totalCost.Text = totalCostNumber.ToString();
+                Cart.totalCost.Text = totalCostNumber.ToString();
+            }
         }
 
 
@@ -277,7 +282,12 @@ namespace ProjektZProgramowania
         }
 
 
-
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // calculates incorrect when window is maximized
+            string tmp = MainWindow.ActualHeightProperty.ToString();
+            Scroll.Height = this.ActualHeight -200;
+        }
 
 
         //Event przycisku kup generowanego dla każdego produktu
@@ -285,19 +295,33 @@ namespace ProjektZProgramowania
 
         private void buyButton_Click(object sender, RoutedEventArgs e)
         {
-            int j = 0;
-            foreach (var item in dynamicButtList)
+            CartWindow instance = Application.Current.Windows.OfType<CartWindow>().SingleOrDefault();
+
+            if (instance == null)
             {
-                if (sender == dynamicButtList[j])
+                int j = 0;
+                foreach (var item in dynamicButtList)
                 {
-                    buyList.Add(itemsInCategory[j]);
-                    break;
-                    
+                    if (sender == dynamicButtList[j])
+                    {
+                        buyList.Add(itemsInCategory[j]);
+                        break;
+
+                    }
+                    j++;
                 }
-                j++;
+
             }
+            else 
+            {
+                string messageBoxText = "Przed dodaniem produktów do koszyka zamknij okno koszyka!";
+                string caption = "Friendly reminder";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
 
-
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
         }
 
 
